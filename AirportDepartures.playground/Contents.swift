@@ -156,7 +156,6 @@ func printDepartures2(departureBoard: DepartureBoard) {
 
 printDepartures2(departureBoard: departure)
 
-
 //: ## 5. Add an instance method to your `DepatureBoard` class (above) that can send an alert message to all passengers about their upcoming flight. Loop through the flights and use a `switch` on the flight status variable.
 //: a. If the flight is canceled print out: "We're sorry your flight to \(city) was canceled, here is a $500 voucher"
 //:
@@ -190,8 +189,7 @@ printDepartures2(departureBoard: departure)
 //: e. Make sure to cast the numbers to the appropriate types so you calculate the correct airfare
 //:
 //: f. Stretch: Use a [`NumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter) with the `currencyStyle` to format the amount in US dollars.
-
-func calculateAirfare(checkedBags: Int, distance: Int, travelers: Int) -> String {
+func calculateAirfare(checkedBags: Int, distance: Int, travelers: Int) -> Double {
         
     let bagsPrices = Double(checkedBags * 25)
     let mileCosts = Double(distance) * 0.10
@@ -200,12 +198,14 @@ func calculateAirfare(checkedBags: Int, distance: Int, travelers: Int) -> String
     /// Format price
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
-    let amount = formatter.string(from: price as NSNumber) ?? ""
-    
-    return amount
+    let amountString = formatter.string(from: price as NSNumber) ?? ""
+    let amount = formatter.number(from: amountString)
+
+    return amount!.doubleValue
 }
 
 
 print(calculateAirfare(checkedBags: 2, distance: 2000, travelers: 3))
 print(calculateAirfare(checkedBags: 4, distance: 1000, travelers: 3))
+
 
