@@ -32,7 +32,7 @@ struct Flight {
     var airpot: Airport
     var airline: String
     var departure: String?
-    var terminal: String? = "TBC"
+    var terminal: String? = "TBD"
     var flightStatus: FlightStatus
 }
 
